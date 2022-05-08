@@ -1,14 +1,10 @@
 # Otus Highload Architect homework 10
 
-СЕрвис счетчиков
+Сервис счетчиков
 
 ## Run
 
-    docker-compose up // запуск БД
-
-    cp .env.example .env
-
-    ./main
+    docker-compose up
 
 ## .env configuration
 

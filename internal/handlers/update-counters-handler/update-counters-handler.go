@@ -41,12 +41,14 @@ func UpdateCountersHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := request.CheckAndApply(r.Context(), id); err != nil {
+		logger.Error("Check and apply error: " + err.Error())
 		httpHelper.InternalServerErrorResponse(w)
 		return
 	}
 
 	c := counter.Counter{}
 	if err := counter.GetCounter(r.Context(), id, &c); err != nil {
+		logger.Error("Get counter error: " + err.Error())
 		httpHelper.InternalServerErrorResponse(w)
 		return
 	}

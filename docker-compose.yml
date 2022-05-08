@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+  counters-service:
+    container_name: otus_sn_counters_service
+    build:
+      context: .
+    restart: on-failure
+    ports:
+      - "7001:7001"
+    networks:
+      - otus_sn_network
+      - internal
+    depends_on:
+      - mysql
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
   mysql:
     container_name: otus_sn_counters_mysql
     image: mysql
@@ -11,10 +28,15 @@ services:
     volumes:
       - ./docker/mysql/scripts:/docker-entrypoint-initdb.d
       - ./docker/mysql/data:/var/lib/mysql
-    ports:
-      - "3320:33061"
     networks:
       - internal
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
 networks:
   internal:
     driver: bridge
+  otus_sn_network:
+    external: true

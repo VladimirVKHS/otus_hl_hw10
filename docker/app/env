@@ -1,0 +1,6 @@
+DB_HOST=otus_sn_counters_mysql
+DB_PORT=3306
+DB_USER=otus
+DB_PASSWORD=otus
+DB_NAME=otus
+HTTP_PORT=7001
